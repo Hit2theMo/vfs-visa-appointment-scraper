@@ -1,23 +1,6 @@
-"""
-Create a python web scraper which logs in to https://visa.vfsglobal.com/ind/en/deu/login using the below credentials-
-email- mohit.khanwale1@gmail.com
-password- Clouds@911
-and then click on "Start New Booking"
-and then find the Earliest Available Slot for-
-    1. Visa Application Centre- Bangalore - Visa Application Centre
-    2. appointment category - Schengen Visa (stay of max. 90 days or less)
-    3. sub-category- visit (family & Friends)
-"""
-
+import time
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
-import time
 from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
@@ -63,22 +46,6 @@ time.sleep(7)
 xpath = '/html/body/app-root/div/app-eligibility-criteria/section/form/mat-card[1]/form/div[4]/div'
 appointment_date = driver.find_element(By.XPATH, xpath).text
 print("appointment_date-", appointment_date)
-
-# try:
-#     element_present = EC.presence_of_element_located((By.ID, 'calendar'))
-#     WebDriverWait(driver, 10).until(element_present)
-#     print("Page is ready!")
-# except TimeoutException:
-#     print("Loading took too much time!")
-
-# calendar = driver.find_element(By.ID, "calendar")
-
-# calendar_dates = calendar.find_elements_by_tag_name("td")
-
-# for date in calendar_dates:
-#     if date.text == "":
-#         date.click()
-#         break
-
-
-# driver.quit()
+# Earliest Available Slot : 08/05/2023
+time.sleep(10)
+driver.quit()
