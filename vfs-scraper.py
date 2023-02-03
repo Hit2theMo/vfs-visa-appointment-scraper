@@ -7,7 +7,6 @@ import schedule
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-# import os
 import config
 
 from_date = '22/02/2023'
@@ -60,15 +59,14 @@ def fetch_latest_appt_date():
 
     xpath = '/html/body/app-root/div/app-eligibility-criteria/section/form/mat-card[1]/form/div[4]/div'
     appointment_date = driver.find_element(By.XPATH, xpath).text
-    # appointment_date = "Earliest Available Slot : 22/04/2023"
+    # Example result- "Earliest Available Slot : 22/04/2023"
     appointment_date = (appointment_date.split(":")[1].strip())
-    appointment_date_str = appointment_date
+    # appointment_date_str = appointment_date
     print("Appointment_date-", appointment_date)
     appointment_date = datetime.strptime(appointment_date, '%d/%m/%Y')
     from_date = datetime.strptime(from_date, '%d/%m/%Y')
     to_date = datetime.strptime(to_date, '%d/%m/%Y')
 
-    ##==============================##==============================##==============================##==============================
     if from_date <= appointment_date <= to_date:
         message = f"Appointment date found {appointment_date.date()} is optimal!"
     else:
@@ -96,11 +94,11 @@ def main():
     print(f"{datetime.now()}: {message}")
     send_email(message)
     
+    
+if __name__ == '__main__':
+    main()
 
-# schedule.every(15).minutes.do(main)
-
-# while True:
-#     schedule.run_pending()
-#     time.sleep(60)  # wait one minute
-
-main()
+    # schedule.every(15).minutes.do(main)
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(60)  # wait one minute
