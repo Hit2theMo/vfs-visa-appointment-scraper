@@ -61,7 +61,6 @@ def fetch_latest_appt_date():
     appointment_date = driver.find_element(By.XPATH, xpath).text
     # Example result- "Earliest Available Slot : 22/04/2023"
     appointment_date = (appointment_date.split(":")[1].strip())
-    # appointment_date_str = appointment_date
     print("Appointment_date-", appointment_date)
     appointment_date = datetime.strptime(appointment_date, '%d/%m/%Y')
     from_date = datetime.strptime(from_date, '%d/%m/%Y')
@@ -94,7 +93,7 @@ def main():
     print(f"{datetime.now()}: {message}")
     send_email(message)
     
-    
+
 if __name__ == '__main__':
     main()
 
