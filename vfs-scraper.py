@@ -70,50 +70,12 @@ def fetch_latest_appt_date():
 
     ##==============================##==============================##==============================##==============================
     if from_date <= appointment_date <= to_date:
-        print(f"Appointment date {appointment_date.date()} optimal!")
-        optimal = True
+        message = f"Appointment date found {appointment_date.date()} is optimal!"
     else:
-        print(f"Appointment date {appointment_date.date()} outside optimal range :(")
+        message = f"Appointment date found {appointment_date.date()} is outside the optimal range :("
 
-    # xpath = '/html/body/app-root/div/app-eligibility-criteria/section/form/mat-card[2]/button'
-    # continue_btn = driver.find_element(By.XPATH, xpath)
-    # driver.execute_script("arguments[0].click();", continue_btn)
-    # time.sleep(5)
-    # ##==============================##==============================##==============================##==============================
-    # xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[5]/div/div/div/app-input-control/div/mat-form-field/div/div[1]/div[3]/input'
-    # first_name = driver.find_element(By.XPATH, xpath).send_keys('MOHIT MILIND')
-
-    # xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[6]/div/div/div/app-input-control/div/mat-form-field/div/div[1]/div[3]/input'    
-    # last_name = driver.find_element(By.XPATH, xpath).send_keys('KHANWALE')
-
-    # xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[7]/div/div[1]/div/app-dropdown/div/mat-form-field/div/div[1]/div[3]/mat-select/div/div[1]'
-    # dropdown_gender = driver.find_element(By.XPATH, xpath)
-    # driver.execute_script("arguments[0].click();", dropdown_gender)
-    # xpath = '/html/body/div[5]/div[2]/div/div/div/mat-option[2]/span'
-    # male = driver.find_element(By.XPATH, xpath)
-    # driver.execute_script("arguments[0].click();", male)
-    # # xpath = '/html/body/div[5]/div[2]/div/div/div/mat-option[1]/span'
-    # # female = driver.find_element(By.XPATH, xpath)
-
-    # xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[7]/div/div[2]/div/app-ngb-datepicker/div/div[2]/input'
-    # dob = driver.find_element(By.XPATH, xpath).send_keys('10101998')
-    # xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[9]/div/div[2]/div/app-ngb-datepicker/div/div[2]/input'
-    # pp_expiry = driver.find_element(By.XPATH, xpath).send_keys('26012033')
-    # try:
-    #     xpath = '/html/body/app-root/div/app-applicant-details/section/mat-card[1]/form/app-dynamic-form/div/div/app-dynamic-control[8]/div/div/div/app-dropdown/div/mat-form-field/div/div[1]/div[3]/mat-select/div/div[1]'
-    #     dropdown_cntry = driver.find_element(By.XPATH, xpath)
-    #     driver.execute_script("arguments[0].click();", dropdown_cntry)
-    #     time.sleep(2)
-    #     xpath = '/html/body/div[5]/div[2]/div/div/div/mat-option[93]/span'
-    #     india = driver.find_element(By.XPATH, xpath)
-    #     driver.execute_script("arguments[0].click();", india)
-    # except Exception as e:
-    #     print(e)
-    #     pass
-    
-    # time.sleep(300)
     driver.quit()
-    return appointment_date_str, optimal
+    return message
 
 
 def send_email(message):
@@ -130,10 +92,9 @@ def send_email(message):
 
 
 def main():
-    appointment_date, optimal = fetch_latest_appt_date()
-    # appointment_date = "Earliest Available Slot : 08/05/2023"
-    print(f"{datetime.now()}: {appointment_date}")
-    send_email(appointment_date)
+    message = fetch_latest_appt_date()
+    print(f"{datetime.now()}: {message}")
+    send_email(message)
     
 
 # schedule.every(15).minutes.do(main)
