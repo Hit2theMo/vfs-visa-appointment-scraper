@@ -9,19 +9,22 @@ from selenium.webdriver.common.by import By
 
 import config
 
-from_date = '22/02/2023'
-to_date = '20/04/2023'
+
+# from_date = '22/02/2023'
+# to_date = '20/04/2023'
 
 
 def fetch_latest_appt_date():
+    # Update from and To date here
     from_date = '22/02/2023'
     to_date = '20/04/2023'
+    
     optimal = False
     driver = webdriver.Chrome()
     driver.get("https://visa.vfsglobal.com/ind/en/deu/login")
     time.sleep(20)
     email = driver.find_element(By.ID, "mat-input-0")
-    email.send_keys("mohit.khanwale1@gmail.com")
+    email.send_keys(config.VFS_EMAIL)
 
     password = driver.find_element(By.ID, "mat-input-1")
     password.send_keys(config.VFS_PASSWORD)
@@ -95,9 +98,8 @@ def main():
     
 
 if __name__ == '__main__':
-    main()
-
-    # schedule.every(15).minutes.do(main)
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(60)  # wait one minute
+    # main()
+    schedule.every(15).minutes.do(main)
+    while True:
+        schedule.run_pending()
+        time.sleep(60)  # wait one minute
